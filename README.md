@@ -85,3 +85,23 @@ plotScatterMatrix
 - 산점도 행렬표를 만들때 사용하는 함수이다.
 
 ## 2023-07-09
+colab을 사용해 상자 그림, 산점도 분석. `colab`
+
+```py
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+pkmn = pd.read_csv('drive/MyDrive/Colab Notebooks/Pokemon.csv')
+
+pkmn.head()
+
+pkmn = pkmn.drop(['Generation', 'Legendary'],1)
+
+sns.jointplot(x="HP", y="Attack", data=pkmn);
+
+sns.boxplot(y="HP", data=pkmn);
+
+sns.boxplot(data=pkmn);
+```
+
