@@ -205,5 +205,56 @@ layout=go.Layout(height=800, width=800, title='Top 1000 Video Games, Release Yea
 graph=go.Figure(data=data, layout=layout)
 iplot(graph)
 ```
-go.Figure
-- 이 클래스는 주어진 데이터와 레이아웃을 기반으로 그래프를 생성한다.
+
+## 2023-08-13
+
+기존 데이터에 대하여 분석및 주석작성
+
+## 2023-08-20
+
+colab을 사용하여 박스 플룻과 산점도 그래프 분석
+
+``` python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+booklist = pd.read_csv('/content/drive/MyDrive/best-selling-books.csv')
+
+#히스토그램 시각화
+plt.figure(figsize=(8, 6))
+plt.hist(booklist['Approximate sales in millions'], bins=10, edgecolor='black')
+plt.xlabel('Sales (millions)')
+plt.ylabel('Frequency')
+plt.title('Distribution of Sales')
+plt.show()
+
+#박스 플롯을 사용하여 시각화
+plt.figure(figsize=(20, 6))
+sns.boxplot(data=booklist, x='Genre', y='Approximate sales in millions')
+plt.xlabel('Genre')
+plt.ylabel('Sales (millions)')
+plt.title('Boxplot of Sales by Genre')
+plt.xticks(rotation=90)
+plt.show()
+
+#원본 언어별 판매량을 파이차트를 사용해 백분위로 시각화
+sales_by_language = booklist.groupby('Original language')['Approximate sales in millions'].sum().reset_index()
+plt.figure(figsize=(8, 8))
+plt.pie(sales_by_language['Approximate sales in millions'], labels=sales_by_language['Original language'], autopct='%1.1f%%')
+plt.title('Sales Distribution by Language')
+plt.show()
+
+#년도에 대한 판매량을 산점도 그래프로 시각화
+plt.figure(figsize=(10, 6))
+plt.scatter(booklist['First published'], booklist['Approximate sales in millions'], alpha=0.5)
+plt.xlabel('Year')
+plt.ylabel('Sales (millions)')
+plt.title('Sales vs. Year')
+plt.show()
+```
