@@ -1,6 +1,6 @@
 # 23_pythonProject
 
-## 💖 2023-06-17
+## 2023-06-17
 
 데이터의 개념과 이해 `pandas`, `matplotlib`
 
@@ -35,7 +35,7 @@ for dirname, _, filenames in os.walk('/kaggle/input'):
 df = pd.read_csv('/content/data_science_job.csv',encoding='latin-1')
 df.head()
 
-df1 = df.dropna()
+df1 = df.dropna() #job의 누락된 데이터를 삭제후 job1에 저장
 
 df1.head()
 
@@ -64,10 +64,10 @@ for dirname, _, filenames in os.walk('/kaggle/input'):
     for filename in filenames:
         print(os.path.join(dirname, filename))
 
-nRowsRead = 1000
+nRowsRead = 1000 # 처음 1000개의 행만 로드
 df1 = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/50ulke.csv')
 df1.dataframeName = '50ulke.csv'
-nRow, nCol = df1.shape
+nRow, nCol = df1.shape #nRow : 행과 열에 대해서 dataframe의 형태를 맞추기 위한 변수
 print(f'There are {nRow} rows and {nCol} columns')
 
 plotPerColumnDistribution(df1, 10, 5)
@@ -258,3 +258,25 @@ plt.ylabel('Sales (millions)')
 plt.title('Sales vs. Year')
 plt.show()
 ```
+
+## 2023-08-27
+
+colab, seaborn을 사용하여 선과 막대를 사용한 혼합차트 분석
+
+``` python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import warnings
+warnings.filterwarnings("ignore")
+
+carp = pd.read_csv("/content/drive/MyDrive/CarPrice_Assignment.csv")
+carp.head()
+
+carp = carp.drop("car_ID",axis=1)
+
+#선과 막대그래프를 사용하여 정보 시각화
+plt.title('Car Price Distribution Plot')
+sns.histplot(carp["price"], kde=True)
+``` 
