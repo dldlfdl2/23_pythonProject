@@ -45,8 +45,9 @@ df1['Experience level'].value_counts().plot.pie(autopct='%1.1f%%')
 ```
 
 matplotlib
-
 -원형 차트를 만들기 위해 필요한 시각화 라이브러리
+
+![Alt text](<job table.png>)
 
 ## 2023-07-02
 seaborn을 사용하여 막대 차트, 산점도 행렬, 상관관계 분석 시각화 `seaborn`, `colab`
@@ -84,8 +85,12 @@ plotCorrelationMatrix
 plotScatterMatrix
 - 산점도 행렬표를 만들때 사용하는 함수이다.
 
+![Alt text](<50ulke scatterplot table .png>)
+![Alt text](<50ulke scatterplot.png>)
+![Alt text](<50ulke stick grape.png>)
+
 ## 2023-07-09
-colab을 사용해 상자 그림, 산점도 분석. `colab`
+colab을 사용해 박스 플롯, 산점도 분석. `colab`
 
 ```py
 import pandas as pd
@@ -104,6 +109,8 @@ sns.boxplot(y="HP", data=pkmn);
 
 sns.boxplot(data=pkmn);
 ```
+![Alt text](<pok box plot.png>)
+![Alt text](<pok grape.png>)
 
 ## 2023-07-16
 
@@ -259,7 +266,12 @@ plt.title('Sales vs. Year')
 plt.show()
 ```
 
-## 2023-08-27
+###
+![](<genre sales box plot.png>)
+![Alt text](<genre sales.png>)
+![Alt text](<sales year scatterplot.png>)
+
+## 2023-08-27](<genre sales.png>)
 
 colab, seaborn을 사용하여 선과 막대를 사용한 혼합차트 분석
 
@@ -280,6 +292,7 @@ carp = carp.drop("car_ID",axis=1)
 plt.title('Car Price Distribution Plot')
 sns.histplot(carp["price"], kde=True)
 ``` 
+![Alt text](<car price plot.png>)
 
 ## 2023-09-03
 
@@ -316,5 +329,36 @@ plt.xticks(rotation=90)
 plt.show()
 ``` 
 
-### image test
-![img](./img.jpeg)
+### 
+![./point a~z.png](<point a~z.png>)
+![Alt text](<point order.png>)
+
+## 2023-09-10
+colab을 사용하여 word cloud 시각화
+``` python
+import pandas as pd
+!pip install wordcloud matplotlib
+df = pd.read_csv("/content/drive/MyDrive/Colab Notebooks/amazon.csv")
+
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+reviews_text = ' '.join(df['review_content'].dropna().values)
+wordcloud = WordCloud(width=800, height=800, background_color='white', min_font_size=10).generate(reviews_text)
+plt.figure(figsize=(8, 8), facecolor=None)
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.tight_layout(pad=0)
+plt.show()
+
+low_rating_df = df[df['rating'] > 4.0]
+reviews_text = ' '.join(low_rating_df['review_content'].dropna().values)
+wordcloud = WordCloud(width=800, height=800, background_color='white', min_font_size=10).generate(reviews_text)
+plt.figure(figsize=(8, 8), facecolor=None)
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.tight_layout(pad=0)
+plt.show()
+``` 
+
+### word cloud
+![](./wordcloud1.png) ![](./wordcloud2.png)s
