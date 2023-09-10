@@ -280,3 +280,41 @@ carp = carp.drop("car_ID",axis=1)
 plt.title('Car Price Distribution Plot')
 sns.histplot(carp["price"], kde=True)
 ``` 
+
+## 2023-09-03
+
+colab, seaborn을 이용하여 scatter사용 
+
+``` python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from IPython.display import display
+
+import os
+for dirname, filenames in os.walk('/content/drive/MyDrive/100 Best Movies on Netflix.csv'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+#배우의 점수를 scatter로 표현
+first_100 = celebrity_score.sort_values(ascending=False)[:100]
+plt.figure(figsize=(20, 8))
+plt.scatter(first_100.keys(), first_100, color="red")
+plt.xticks(rotation=90)
+plt.show()
+
+middle = celebrity_score.sort_values(ascending=False)[101:298]
+plt.figure(figsize=(20, 8))
+plt.scatter(middle.keys(), middle, color="red")
+plt.xticks(rotation=90)
+plt.show()
+
+last_100 = celebrity_score.sort_values(ascending=False)[299:]
+plt.figure(figsize=(20, 8))
+plt.scatter(last_100.keys(), last_100, color="red")
+plt.xticks(rotation=90)
+plt.show()
+``` 
+
+### image test
+![img](./img.jpeg)
